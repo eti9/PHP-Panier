@@ -1,9 +1,11 @@
 <?php
+require_once("BDContext.php");
+
 class ProduitModel extends BDContext
 {
     function getListProduit()
     {
-        $bdd = connexionBD();
+        $bdd = $this->connexionBD();
         $req = $bdd->query('SELECT * FROM produit');
         return $req;
     }

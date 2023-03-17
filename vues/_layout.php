@@ -10,14 +10,15 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+<link rel="stylesheet" href="style/style.css" />
 
 <head>
 
 </head>
 
-<body class="bg-dark">
-  <div class="container bg-light card">
+<body class="d-flex m-5">
+  <div class="container bg-light card mx-auto">
     <nav class="navbar navbar-dark navbar-expand-lg my-2 bg-dark">
       <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span
             class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg
@@ -48,7 +49,7 @@
     <?= $content ?>
 
 
-    <footer>
+    <footer class="p-2 m-2">
       <p>Copyright &copy; 2023 - Créer par Étienne Robert a l'aide de Bootstrap et JQUERY - Version 1.0</p>
     </footer>
   </div>

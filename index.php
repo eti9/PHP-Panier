@@ -1,4 +1,4 @@
 <?php
-$content = "";
+require("./controleurs/ProduitControleurs.php");
 
-require("vues/_layout.php");
+afficherListeProduit();
