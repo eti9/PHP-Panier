@@ -38,7 +38,7 @@
             </svg></span><span>USB-CableNet</span></a>
 
         <div id="navcol-5" class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link active" href="#">Liste de produit</a></li>
           </ul>
           <?php if (isset($_SESSION['Username'])) { ?>

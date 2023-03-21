@@ -31,17 +31,19 @@
 
 
 
-                                <!-- Form to add  product to shopping card -->
-                                <form class="form">
-                                    <div class="inline-block">
-                                        <input type="hidden" name="produitId" value=<?= $produit['ProduitID'] ?> />
-                                        <label for="quantite" class="form-label">Quantité:</label>
-                                        <input id="quantite" class="ml-2" name="NbItem" style="width:47px;" type="number"
-                                            min="1" max=<?= $produit['NbDisponible'] ?> value="1"></input>
-                                    </div>
-                                    <button class="btn btn-outline-primary btn-sm mt-2" type="submit">Ajouter au panier
-                                    </button>
-                                </form>
+                                <!-- Form to add  product to shopping card, not availaible if not connected -->
+                                <?php if (isset($_SESSION['Username'])) { ?>
+                                    <form class="form">
+                                        <div class="inline-block">
+                                            <input type="hidden" name="produitId" value=<?= $produit['ProduitID'] ?> />
+                                            <label for="quantite" class="form-label">Quantité:</label>
+                                            <input id="quantite" class="ml-2" name="NbItem" style="width:47px;" type="number"
+                                                min="1" max=<?= $produit['NbDisponible'] ?> value="1"></input>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm mt-2" type="submit">Ajouter au panier
+                                        </button>
+                                    </form>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
