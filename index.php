@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("./controleurs/ProduitControleurs.php");
 require("./controleurs/UserControleurs.php");
 

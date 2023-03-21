@@ -52,8 +52,7 @@
     <footer class="p-2 m-2">
       <p>Copyright &copy; 2023 - Créer par Étienne Robert a l'aide de Bootstrap et JQUERY - Version 1.0</p>
       <p>
-        <?php if (isset($_SESSION['Username']))
-          echo $_SESSION['Username']; ?>
+        <?= $_SESSION['Username'] ?>
       </p>
     </footer>
   </div>
