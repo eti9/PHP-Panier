@@ -40,7 +40,15 @@
         <div id="navcol-5" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link active" href="#">Liste de produit</a></li>
-          </ul><a class="btn btn-primary ms-md-2" role="button" href="?login">Login</a>
+          </ul>
+          <?php if (isset($_SESSION['Username'])) { ?>
+
+            <a class="btn btn-primary ms-md-2" role="button" href="?logout">Se deconnecter</a>
+            <?php
+          } else {
+            ?>
+            <a class="btn btn-primary ms-md-2" role="button" href="?login">Se connecter</a>
+          <?php } ?>
         </div>
       </div>
     </nav>
@@ -51,9 +59,6 @@
 
     <footer class="p-2 m-2">
       <p>Copyright &copy; 2023 - Créer par Étienne Robert a l'aide de Bootstrap et JQUERY - Version 1.0</p>
-      <p>
-        <?= $_SESSION['Username'] ?>
-      </p>
     </footer>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

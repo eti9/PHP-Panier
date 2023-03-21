@@ -2,7 +2,7 @@
 require("modeles/UserModel.php");
 function afficherFormLoggin()
 {
-    require("vues/formLogin.php");
+    require("vues/formLoginVue.php");
 }
 
 function postLoginAction($username, $password)
@@ -21,4 +21,19 @@ function postLoginAction($username, $password)
         header("Location:/");
         die();
     }
+}
+function afficherFormLogout()
+{
+    require("vues/formLogoutVue.php");
+}
+function logoutAction()
+{
+    if (isset($_SESSION['Username']))
+        unset($_SESSION['Username']);
+    if (isset($_SESSION['Prenom']))
+        unset($_SESSION['Prenom']);
+    if (isset($_SESSION['Nom']))
+        unset($_SESSION['Nom']);
+    header("Location:/");
+    die();
 }
