@@ -103,4 +103,39 @@ class PanierModel extends BDContext
         return $req;
     }
 
+    function deleteProduitFromPanier($produitID)
+    {
+        $username = $_SESSION['Username'];
+        $bdd = $this->connexionBD();
+        $req = $bdd->prepare('SELECT NbItem from panier where ProduitID=:produitID and Username=:username');
+        $req->execute(
+            array(
+                "produitID" => $produitID,
+                "username" => $username
+            )
+        );
+        if ($req->rowCount() == 0)
+            throw new Exception("Item introuvable");
+
+
+        $newReq = $bdd->prepare('UPDATE produit set NbDisponible=NbDisponible + :nbItem where ProduitID=:produitID');
+        $newReq->execute(
+            array(
+                "nbItem" => $req->fetch()['NbItem'],
+                "produitID" => $produitID
+            )
+        );
+
+        $lastReq = $bdd->prepare('DELETE FROM panier where ProduitID=:produitID and Username=:username');
+        $lastReq->execute(
+            array(
+                "produitID" => $produitID,
+                "username" => $username
+            )
+        );
+        if ($lastReq->rowCount() == 0)
+            throw new Exception("Delete incomplet");
+
+    }
+
 }

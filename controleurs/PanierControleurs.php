@@ -36,3 +36,19 @@ function afficherPanier()
     $total = $panier->getPrixTotalPanier()->fetch()['total'];
     require("vues/panierVue.php");
 }
+function removeProduitFromPanier($produitID)
+{
+    if (!isset($_SESSION['Username'])) {
+        header('Location:?');
+        die();
+    }
+    $panier = new PanierModel();
+    try {
+        $panier->deleteProduitFromPanier($produitID);
+        setcookie('success', 'La suppression a bien été executé', time() + 10000);
+    } catch (Exception $e) {
+        setcookie('erreurSQL', $e->getMessage(), time() + 10000);
+    }
+    header('Location:?cart');
+    die();
+}

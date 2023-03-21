@@ -90,11 +90,11 @@
   $('document').ready(function () {
     <?php if (isset($_COOKIE['success'])) {
       if ($_COOKIE['success'] != '')
-        echo 'alert("' . $_COOKIE['success'] . '");';
+        echo 'setTimeout(() => {alert("' . $_COOKIE['success'] . '");}, 100);';
     }
     if (isset($_COOKIE['erreurSQL'])) {
       if ($_COOKIE['erreurSQL'] != '')
-        echo 'alert("' . $_COOKIE['erreurSQL'] . '");';
+        echo 'setTimeout(() => {alert("' . $_COOKIE['erreurSQL'] . '");},1000);';
     } ?>
 
 

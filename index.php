@@ -15,11 +15,13 @@ if (isset($_COOKIE['success']))
 //This is the base index
 if (isset($_POST['Username']) && isset($_POST['Password'])) {
     postLoginAction($_POST['Username'], $_POST['Password']);
-} else if (isset($_POST['action']) && isset($_POST['produitId']) && isset($_POST['nbItems'])) {
+} else if (isset($_POST['action']) && isset($_POST['produitId'])) {
     //Cart action
-    if ($_POST['action'] == 'add')
+    if ($_POST['action'] == 'add' && isset($_POST['nbItems']))
         ajoutPanier($_POST['produitId'], $_POST['nbItems']);
-    else {
+    else if ($_POST['action'] == 'delete') {
+        removeProduitFromPanier($_POST['produitId']);
+    } else {
         afficherHomePage();
     }
 } else if (isset($_POST['confirmedLogout'])) {

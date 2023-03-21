@@ -55,8 +55,8 @@
                                     <td class="actions" data-th="" style="width:16%">
                                         <div class="text-right">
                                             <form method="post">
-                                                <input type="hidden" name="action" value="supprimer">
-                                                <input type="hidden" name="ProduitID" value=<?= $produit['ProduitID'] ?>>
+                                                <input type="hidden" name="action" value="delete">
+                                                <input type="hidden" name="produitId" value=<?= $produit['ProduitID'] ?>>
                                                 <button type="submit"
                                                     class="btn btn-white border-secondary bg-white btn-md mb-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -78,7 +78,7 @@
                     <div class="float-right text-right">
                         <h4>Total</h4>
                         <h1>
-                            <?= $total ?>
+                            <?= $total ?>$
                         </h1>
                     </div>
                 <?php } ?>
