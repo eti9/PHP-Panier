@@ -7,17 +7,25 @@
 </div>
 <div class="d-flex justify-content-center">
     <div class="card m-5 center-card" style="width: 50%">
+        <div class="d-flex justify-content-center">
+            <span class="text-danger">
+                <?php if (isset($_COOKIE['erreurLogin']))
+                    echo $_COOKIE['erreurLogin']; ?>
+            </span>
+        </div>
         <form class="form m-2" action="" method="post">
             <!-- Username input -->
             <div class="form-outline mb-4">
-                <input type="text" id="username" name="Username" class="form-control" />
                 <label class="form-label" for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="Username" class="form-control" />
+
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-                <input type="password" id="password" name="Password" class="form-control" />
                 <label class="form-label" for="password">Mot de passe</label>
+                <input type="password" id="password" name="Password" class="form-control" />
+
             </div>
 
             <!-- Submit button -->
@@ -31,7 +39,8 @@
     </div>
 </div>
 <?php
-
+if (isset($_COOKIE['erreurLogin']))
+    setcookie('erreurLogin', '', 1);
 $content = ob_get_clean();
 require("_layout.php");
 
