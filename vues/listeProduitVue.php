@@ -1,4 +1,4 @@
-<?php ob_start() ?>;
+<?php ob_start() ?>
 <!-- Design comes from  : https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579 -->
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
@@ -29,10 +29,14 @@
                             <h6 class="text-success">Free shipping</h6>
                             <div class="d-flex flex-column mt-4">
 
+
+
+                                <!-- Form to add  product to shopping card -->
                                 <form class="form">
                                     <div class="inline-block">
+                                        <input type="hidden" name="produitId" value=<?= $produit['ProduitID'] ?> />
                                         <label for="quantite" class="form-label">Quantité:</label>
-                                        <input id="quantite" class="ml-2" name="quantite" style="width:47px;" type="number"
+                                        <input id="quantite" class="ml-2" name="NbItem" style="width:47px;" type="number"
                                             min="1" max=<?= $produit['NbDisponible'] ?> value="1"></input>
                                     </div>
                                     <button class="btn btn-outline-primary btn-sm mt-2" type="submit">Ajouter au panier

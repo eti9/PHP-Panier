@@ -6,3 +6,7 @@ function afficherListeProduit()
     $req = $ProduitBD->getListProduit();
     require("vues/listeProduitVue.php");
 }
+function afficherFormLoggin()
+{
+    require("vues/formLogin.php");
+}
