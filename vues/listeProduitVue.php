@@ -33,11 +33,12 @@
 
                                 <!-- Form to add  product to shopping card, not availaible if not connected -->
                                 <?php if (isset($_SESSION['Username'])) { ?>
-                                    <form class="form">
+                                    <form class="form" action="" method="post">
                                         <div class="inline-block">
+                                            <input type="hidden" name="action" value="add" />
                                             <input type="hidden" name="produitId" value=<?= $produit['ProduitID'] ?> />
                                             <label for="quantite" class="form-label">Quantité:</label>
-                                            <input id="quantite" class="ml-2" name="NbItem" style="width:47px;" type="number"
+                                            <input id="quantite" class="ml-2" name="nbItems" style="width:47px;" type="number"
                                                 min="1" max=<?= $produit['NbDisponible'] ?> value="1"></input>
                                         </div>
                                         <button class="btn btn-outline-primary btn-sm mt-2" type="submit">Ajouter au panier
@@ -56,6 +57,8 @@
     </div>
 </div>
 
-<?php $content = ob_get_clean(); ?>
+<?php
+
+$content = ob_get_clean(); ?>
 
 <?php require('_layout.php'); ?>
