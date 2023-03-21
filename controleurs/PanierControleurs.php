@@ -52,3 +52,23 @@ function removeProduitFromPanier($produitID)
     header('Location:?cart');
     die();
 }
+function modifyNumberOfAProductInCart($produitID, $nbItem)
+{
+    if (!isset($_SESSION['Username'])) {
+        header('Location:?');
+        die();
+    }
+    if ($nbItem <= 0) {
+        header('Location:?cart');
+        die();
+    }
+    $panier = new PanierModel();
+    try {
+        $panier->modifyNumberOfOneItemInCart($produitID, $nbItem);
+        setcookie('success', 'La modification a bien été executé', time() + 10000);
+    } catch (Exception $e) {
+        setcookie('erreurSQL', $e->getMessage(), time() + 10000);
+    }
+    header('Location:?cart');
+    die();
+}

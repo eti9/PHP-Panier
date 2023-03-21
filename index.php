@@ -21,6 +21,8 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
         ajoutPanier($_POST['produitId'], $_POST['nbItems']);
     else if ($_POST['action'] == 'delete') {
         removeProduitFromPanier($_POST['produitId']);
+    } else if ($_POST['action'] == 'modify' && isset($_POST['nbItems'])) {
+        modifyNumberOfAProductInCart($_POST['produitId'], $_POST['nbItems']);
     } else {
         afficherHomePage();
     }

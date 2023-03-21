@@ -10,20 +10,11 @@ class PanierModel extends BDContext
         $username = $_SESSION['Username'];
         $bdd = $this->connexionBD();
 
-        $req = $bdd->prepare('SELECT * FROM produit where ProduitID=:produitID and NbDisponible >= :NbItem');
-        $req->execute(
-            array(
-                "produitID" => $produitID,
-                "NbItem" => $nbItems
-            )
-        );
-        if ($req->rowCount() == 0) {
-            throw new Exception("Nombre d'item insuffisant ou produit innexistant");
-        }
+        $this->isNbItemDisponible($produitID, $nbItems);
 
 
         //Check if panier exist
-        $isPanierExist = $this->panierExist($produitID, $nbItems, $username);
+        $isPanierExist = $this->panierExist($produitID, $username);
 
         //Si l'item existe déjà dans le panier, on update la table
         if ($isPanierExist) {
@@ -67,7 +58,7 @@ class PanierModel extends BDContext
         return;
     }
 
-    function panierExist($produitID, $nbItems, $username)
+    function panierExist($produitID, $username)
     {
         $bdd = $this->connexionBD();
         //On regarde si le produit existe déjà dans le panier
@@ -103,7 +94,73 @@ class PanierModel extends BDContext
         return $req;
     }
 
+
+
     function deleteProduitFromPanier($produitID)
+    {
+        $username = $_SESSION['Username'];
+        $bdd = $this->connexionBD();
+
+        $nbItem = $this->getNbItemInCart($produitID);
+
+
+
+
+        $req = $bdd->prepare('DELETE FROM panier where ProduitID=:produitID and Username=:username');
+        $req->execute(
+            array(
+                "produitID" => $produitID,
+                "username" => $username
+            )
+        );
+        if ($req->rowCount() == 0)
+            throw new Exception("Produit introuvable dans le panier");
+
+        $lastReq = $bdd->prepare('UPDATE produit set NbDisponible=NbDisponible + :nbItem where ProduitID=:produitID');
+        $lastReq->execute(
+            array(
+                "nbItem" => $nbItem,
+                "produitID" => $produitID
+            )
+        );
+
+    }
+
+    function modifyNumberOfOneItemInCart($produitID, $nbItem)
+    {
+        $username = $_SESSION['Username'];
+        $bdd = $this->connexionBD();
+
+        $nbItemBefore = $this->getNbItemInCart($produitID);
+
+        $this->isNbItemDisponible($produitID, $nbItem - $nbItemBefore);
+
+        //On update le panier
+        $req = $bdd->prepare('UPDATE panier SET NbItem=:nbItem where ProduitID=:produitID and Username=:username');
+        $req->execute(
+            array(
+                "nbItem" => $nbItem,
+                "produitID" => $produitID,
+                "username" => $username
+            )
+        );
+        if ($req->rowCount() == 0)
+            throw new Exception("Produit introuvable dans le panier");
+
+        //Puis le produit
+        $req = $bdd->prepare('UPDATE produit SET NbDisponible=NbDisponible + :nbItem where ProduitID=:produitID');
+        $req->execute(
+            array(
+                "nbItem" => $nbItemBefore - $nbItem,
+                "produitID" => $produitID
+            )
+        );
+        if ($req->rowCount() == 0)
+            throw new Exception("Le produit n a pas été updaté");
+
+        return;
+    }
+    function getNbItemInCart($produitID)
     {
         $username = $_SESSION['Username'];
         $bdd = $this->connexionBD();
@@ -116,26 +173,20 @@ class PanierModel extends BDContext
         );
         if ($req->rowCount() == 0)
             throw new Exception("Item introuvable");
-
-
-        $newReq = $bdd->prepare('UPDATE produit set NbDisponible=NbDisponible + :nbItem where ProduitID=:produitID');
-        $newReq->execute(
-            array(
-                "nbItem" => $req->fetch()['NbItem'],
-                "produitID" => $produitID
-            )
-        );
-
-        $lastReq = $bdd->prepare('DELETE FROM panier where ProduitID=:produitID and Username=:username');
-        $lastReq->execute(
+        return $req->fetch()['NbItem'];
+    }
+    function isNbItemDisponible($produitID, $nbItems)
+    {
+        $bdd = $this->connexionBD();
+        $req = $bdd->prepare('SELECT * FROM produit where ProduitID=:produitID and NbDisponible >= :NbItem');
+        $req->execute(
             array(
                 "produitID" => $produitID,
-                "username" => $username
+                "NbItem" => $nbItems
             )
         );
-        if ($lastReq->rowCount() == 0)
-            throw new Exception("Delete incomplet");
-
+        if ($req->rowCount() == 0) {
+            throw new Exception("Nombre d'item insuffisant ou produit innexistant");
+        }
     }
-
 }
