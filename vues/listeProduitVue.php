@@ -3,10 +3,13 @@
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
+            <div class="d-flex justify-content-center">
+                <h3 class="text-bold">Liste de nos super cables imbattables !</h3>
+            </div>
             <tbody>
                 <?php
                 while ($produit = $req->fetch()) { ?>
-                    <div class="row p-2 bg-white border rounded">
+                    <div class="row p-2 bg-white border rounded mb-2">
                         <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
                                 src=<?= "./images/" . $produit['Image'] ?>></div>
                         <div class="col-md-6 mt-1">

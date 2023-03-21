@@ -17,6 +17,7 @@
                     </i> produit dans votre panier
                 </p>
                 <?php if ($produitCount > 0) { ?>
+
                     <table id="shoppingCart" class="table table-condensed table-responsive">
                         <thead>
                             <tr>
@@ -27,38 +28,54 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             <?php while ($produit = $reqAllProduit->fetch()) { ?>
+
+
+                                <!-- TEMPLATE PRODUIT -->
                                 <tr>
                                     <td data-th="Produit" style="width:60%">
                                         <div class="row">
+
+                                            <!-- IMAGE -->
                                             <div class="col-md-3 text-left">
                                                 <img src=<?= "./images/" . $produit['Image'] ?> alt=""
                                                     class="img-fluid d-none d-md-block rounded mb-2 shadow ">
                                             </div>
+
+                                            <!-- NOM -->
                                             <div class="col-md-9 text-left mt-sm-2">
                                                 <h4>
                                                     <?= $produit['Nom'] ?>
                                                 </h4>
-                                                <!-- <p class="font-weight-light text-truncate">
-                                                <?= $produit['Description'] ?>
-                                            </p> -->
                                             </div>
                                         </div>
                                     </td>
+
+                                    <!-- TOTAL -->
                                     <td data-th="Sous-total" style="width:12%">
                                         <?= $produit['sous_total'] ?>$
                                     </td>
+
+                                    <!-- FORM MODIFICATION NOMBRE -->
                                     <td data-th="Quantité" style="width:10%">
-                                        <input type="number" class="form-control form-control-lg text-center p-1"
-                                            value=<?= $produit['NbItem'] ?> min=1 max=<?= $produit['NbItem'] + $produit['NbDisponible'] ?>>
+                                        <form class="formModify" method="post">
+                                            <input type="hidden" name="produitId" value=<?= $produit['ProduitID'] ?>>
+                                            <input type="number" class="form-control form-control-lg text-center p-1"
+                                                value=<?= $produit['NbItem'] ?> min=1 max=<?= $produit['NbItem'] + $produit['NbDisponible'] ?> name="nbItems">
+                                            <button id=<?= "btnModif" . $produit['ProduitID'] ?> type="submit" name="action"
+                                                value="modify" class="btn btn-warning m-2 p-2" hidden>Confirmer</button>
+                                        </form>
                                     </td>
+
+                                    <!-- FORM SUPPRESSION -->
                                     <td class="actions" data-th="" style="width:16%">
                                         <div class="text-right">
                                             <form method="post">
                                                 <input type="hidden" name="action" value="delete">
                                                 <input type="hidden" name="produitId" value=<?= $produit['ProduitID'] ?>>
                                                 <button type="submit"
-                                                    class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                                    class="btn btn-white border-secondary bg-white btn-lg mb-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                         <path
@@ -70,11 +87,16 @@
                                             </form>
                                         </div>
                                     </td>
+
+
+
                                 </tr>
                             <?php } ?>
                         </tbody>
                     </table>
 
+
+                    <!-- TOTAL DE TOUT LES PRODUITS -->
                     <div class="float-right text-right">
                         <h4>Total</h4>
                         <h1>
@@ -82,13 +104,21 @@
                         </h1>
                     </div>
                 <?php } ?>
+
+
+
             </div>
         </div>
         <?php if ($produitCount > 0) { ?>
             <div class="row mt-4 d-flex align-items-center">
+
+                <!-- CONFIRMER LES ACHATS -->
                 <div class="col-sm-6 order-md-2 text-right">
-                    <a href="?" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
+                    <a href="?" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Confirmer les achats</a>
                 </div>
+
+
+                <!-- RETOUR A A LA LISTE -->
                 <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left font-weight-bold" style="font-size: 20px">
                     <a href="?liste" class="active text-decoration-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -99,10 +129,22 @@
                         magasiner
                     </a>
                 </div>
+
             </div>
         <?php } ?>
     </div>
 </section>
+<script>
+    $('document').ready(function () {
+        //$('.formModify button').attr('hidden', true);
+
+        $('.formModify input[name="nbItems"]').on('change', function () {
+            if ($(this).parent().children('button').is(':hidden')) {
+                $(this).parent().children('button').attr('hidden', false);
+            }
+        });
+    });
+</script>
 
 <?php
 $content = ob_get_clean();

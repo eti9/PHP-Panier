@@ -96,7 +96,9 @@
       if ($_COOKIE['erreurSQL'] != '')
         echo 'setTimeout(() => {alert("' . $_COOKIE['erreurSQL'] . '");},1000);';
     } ?>
-
+    $('document').ready(function () {
+      $('#btnModif').addClass('hidden');
+    });
 
   });
 
