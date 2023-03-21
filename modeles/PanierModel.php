@@ -80,5 +80,27 @@ class PanierModel extends BDContext
         );
         return $req->rowCount() > 0 ? true : false;
     }
+    function getAllProductPanier()
+    {
+        $bdd = $this->connexionBD();
+        $req = $bdd->prepare('SELECT pp.ProduitID, pp.NbItem, pp.Username, pr.Nom, pr.Description, pr.NbDisponible, pr.Image, pr.PrixUnitaire, pr.PrixUnitaire*pp.NbItem as sous_total  FROM panier pp INNER JOIN produit pr ON pp.ProduitID = pr.ProduitID where pp.Username =:username');
+        $req->execute(
+            array(
+                "username" => $_SESSION['Username']
+            )
+        );
+        return $req;
+    }
+    function getPrixTotalPanier()
+    {
+        $bdd = $this->connexionBD();
+        $req = $bdd->prepare('SELECT SUM(pr.PrixUnitaire*pp.NbItem) as total  FROM panier pp INNER JOIN produit pr ON pp.ProduitID = pr.ProduitID where pp.Username =:username');
+        $req->execute(
+            array(
+                "username" => $_SESSION['Username']
+            )
+        );
+        return $req;
+    }
 
 }

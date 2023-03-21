@@ -23,3 +23,15 @@ function ajoutPanier($produitID, $nombreItem)
     die();
 
 }
+
+function afficherPanier()
+{
+    if (!isset($_SESSION['Username'])) {
+        header('Location:?');
+        die();
+    }
+    $panier = new PanierModel();
+    $reqAllProduit = $panier->getAllProductPanier();
+    $total = $panier->getPrixTotalPanier()->fetch()['total'];
+    require("vues/panierVue.php");
+}

@@ -30,6 +30,8 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
     afficherFormLogout();
 } else if (isset($_GET['liste'])) {
     afficherListeProduit();
+} else if (isset($_GET['cart'])) {
+    afficherPanier();
 } else {
     afficherHomePage();
 }
