@@ -20,7 +20,7 @@
 <body class="d-flex m-5">
   <div class="container bg-light card mx-auto">
     <nav class="navbar navbar-dark navbar-expand-lg my-2 bg-dark">
-      <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span
+      <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span
             class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg
               class="bi bi-battery-charging" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
               fill="currentColor" viewBox="0 0 16 16">
@@ -39,7 +39,7 @@
 
         <div id="navcol-5" class="collapse navbar-collapse">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link active" href="#">Liste de produit</a></li>
+            <li class="nav-item"><a class="nav-link active" href="?liste">Liste de produit</a></li>
           </ul>
           <?php if (isset($_SESSION['Username'])) { ?>
 

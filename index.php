@@ -2,6 +2,7 @@
 session_start();
 require("./controleurs/ProduitControleurs.php");
 require("./controleurs/UserControleurs.php");
+require("./controleurs/HomeControleurs.php");
 
 //This is the base index
 if (isset($_POST['Username']) && isset($_POST['Password'])) {
@@ -12,6 +13,8 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
     afficherFormLoggin();
 } else if (isset($_GET['logout'])) {
     afficherFormLogout();
-} else {
+} else if (isset($_GET['liste'])) {
     afficherListeProduit();
+} else {
+    afficherHomePage();
 }
