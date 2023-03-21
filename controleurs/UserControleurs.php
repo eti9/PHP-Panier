@@ -1,7 +1,14 @@
 <?php
 require("modeles/UserModel.php");
+
+
+//LOGIN
 function afficherFormLoggin()
 {
+    if (isset($_SESSION['Username'])) {
+        header('Location:/');
+        die();
+    }
     require("vues/formLoginVue.php");
 }
 
@@ -22,8 +29,14 @@ function postLoginAction($username, $password)
         die();
     }
 }
+
+//LOGOUT
 function afficherFormLogout()
 {
+    if (!isset($_SESSION['Username'])) {
+        header('Location:/');
+        die();
+    }
     require("vues/formLogoutVue.php");
 }
 function logoutAction()
