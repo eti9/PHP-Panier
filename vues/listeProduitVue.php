@@ -32,7 +32,7 @@
 
 
                                 <!-- Form to add  product to shopping card, not availaible if not connected -->
-                                <?php if (isset($_SESSION['Username'])) { ?>
+                                <?php if (isset($_SESSION['Username']) && $produit['NbDisponible'] > 0) { ?>
                                     <form class="form" action="" method="post">
                                         <div class="inline-block">
                                             <input type="hidden" name="action" value="add" />
@@ -44,7 +44,8 @@
                                         <button class="btn btn-outline-primary btn-sm mt-2" type="submit">Ajouter au panier
                                         </button>
                                     </form>
-                                <?php } ?>
+                                    <?php
+                                } ?>
                             </div>
                         </div>
                     </div>

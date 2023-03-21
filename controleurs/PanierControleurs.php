@@ -32,6 +32,7 @@ function afficherPanier()
     }
     $panier = new PanierModel();
     $reqAllProduit = $panier->getAllProductPanier();
+    $produitCount = $reqAllProduit->rowCount();
     $total = $panier->getPrixTotalPanier()->fetch()['total'];
     require("vues/panierVue.php");
 }
