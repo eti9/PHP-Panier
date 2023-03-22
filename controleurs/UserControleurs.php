@@ -60,3 +60,20 @@ function afficherFormRegister()
     }
     require("vues/formRegisterVue.php");
 }
+
+function registerNewUser($username, $password, $prenom, $nom, $email)
+{
+    if (isset($_SESSION['Username'])) {
+        header('Location:/');
+        die();
+    }
+    $user = new UserModel();
+    try {
+        $user->addUser($username, $password, $prenom, $nom, $email);
+        require("vues/userCreatedVue.php");
+    } catch (Exception $e) {
+        setcookie('erreurRegister', $e->getMessage(), time() + 100000);
+        header('Location:?register');
+        die();
+    }
+}

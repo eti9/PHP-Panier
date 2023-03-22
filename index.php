@@ -11,10 +11,15 @@ if (isset($_COOKIE['erreurSQL']))
     setcookie('erreurSQL', '', 1);
 if (isset($_COOKIE['success']))
     setcookie('success', '', 1);
-
+if (isset($_COOKIE['erreurRegister']))
+    setcookie('erreurRegister', '', 1);
 
 //This is the base index
-if (isset($_POST['Username']) && isset($_POST['Password'])) {
+if (isset($_POST['Username']) && isset($_POST['Password']) && isset($_POST['Prenom']) && isset($_POST['Nom'])) {
+    if (!isset($_POST['Email']))
+        $_POST['Email'] = "";
+    registerNewUser($_POST['Username'], $_POST['Password'], $_POST['Prenom'], $_POST['Nom'], $_POST['Email']);
+} else if (isset($_POST['Username']) && isset($_POST['Password'])) {
     postLoginAction($_POST['Username'], $_POST['Password']);
 } else if (isset($_POST['facture'])) {
     transferPanierToFacture();

@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
             <div class="d-flex justify-content-center">
-                <h3 class="text-bold">Liste de nos super cables imbattables !</h3>
+                <h3 class="">Liste de nos super cables imbattables !</h3>
             </div>
             <tbody>
                 <?php
@@ -61,7 +61,28 @@
         </div>
     </div>
 </div>
+<div class="mb-3 ml-2 mr-3 d-flex justify-content-between font-weight-bold" style="font-size: 20px">
+    <a href="?" class="active  text-md-left text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left pb-1"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+        </svg> Home
+    </a>
+    <?php if (isset($_SESSION['Username'])) { ?>
+        <a href="?cart" class="active  text-md-right text-decoration-none">
+            Panier
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+        </a>
+    <?php } ?>
+</div>
+<div class="mb-3 ml-2  text-md-right font-weight-bold" style="font-size: 20px">
 
+</div>
 <?php
 
 $content = ob_get_clean(); ?>

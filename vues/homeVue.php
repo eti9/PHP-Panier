@@ -22,7 +22,7 @@ ob_start();
                 <li><a href="?logout" class="link"> Se déconnecter</a></li>
                 <li><a href="?cart" class="link"> Consulter son panier</a></li>
             <?php } else { ?>
-                <li><a href="?login" class="link"> Se connecter</a></li>
+                <li><a href="?login" class="link"> Se connecter</a> ou <a href="?register" class="link"> s'inscrire</a></li>
             <?php } ?>
         </ul>
     </div>
