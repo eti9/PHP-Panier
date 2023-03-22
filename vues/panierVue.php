@@ -114,7 +114,10 @@
 
                 <!-- CONFIRMER LES ACHATS -->
                 <div class="col-sm-6 order-md-2 text-right">
-                    <a href="?" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Confirmer les achats</a>
+                    <form method="post">
+                        <button type="submit" name="facture" value="" id="btnAchat"
+                            class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Confirmer les achats</button>
+                    </form>
                 </div>
 
 
@@ -141,6 +144,12 @@
         $('.formModify input[name="nbItems"]').on('change', function () {
             if ($(this).parent().children('button').is(':hidden')) {
                 $(this).parent().children('button').attr('hidden', false);
+            }
+        });
+        $('#btnAchat').on('click', function (e) {
+            let result = confirm("Confirmez vous l'achat des produits présent dans le cart ?");
+            if (!result) {
+                e.preventDefault();
             }
         });
     });

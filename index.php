@@ -4,6 +4,7 @@ require("./controleurs/ProduitControleurs.php");
 require("./controleurs/UserControleurs.php");
 require("./controleurs/HomeControleurs.php");
 require("./controleurs/PanierControleurs.php");
+require("./controleurs/FactureControleurs.php");
 
 //On unset les cookies d'erreur pour la prochaine requete
 if (isset($_COOKIE['erreurSQL']))
@@ -15,6 +16,8 @@ if (isset($_COOKIE['success']))
 //This is the base index
 if (isset($_POST['Username']) && isset($_POST['Password'])) {
     postLoginAction($_POST['Username'], $_POST['Password']);
+} else if (isset($_POST['facture'])) {
+    transferPanierToFacture();
 } else if (isset($_POST['action']) && isset($_POST['produitId'])) {
     //Cart action
     if ($_POST['action'] == 'add' && isset($_POST['nbItems']))
