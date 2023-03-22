@@ -1,0 +1,11 @@
+
+body{
+    background: linear-gradient(to right, #00783c, #123a00);
+  
+  }
+.btn-primary {
+    background: linear-gradient(to right, #00783c, #123a00);
+}
+.navbar-dark {
+    background: linear-gradient(to right,#257600, #00d169);
+}

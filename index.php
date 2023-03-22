@@ -14,6 +14,21 @@ if (isset($_COOKIE['success']))
 if (isset($_COOKIE['erreurRegister']))
     setcookie('erreurRegister', '', 1);
 
+//Theme gestion
+if (!isset($_COOKIE['theme'])) {
+    $_COOKIE['theme'] = "normal";
+    setcookie('theme', 'normal', time() + 1000000 * 350);
+}
+if (isset($_GET['toStPat'])) {
+    setcookie('theme', 'stPat', time() + 1000000 * 350);
+    header('Location:/');
+    die();
+}
+if (isset($_GET['toNormal'])) {
+    setcookie('theme', 'normal', time() + 1000000 * 350);
+    header('Location:/');
+    die();
+}
 //This is the base index
 if (isset($_POST['Username']) && isset($_POST['Password']) && isset($_POST['Prenom']) && isset($_POST['Nom'])) {
     if (!isset($_POST['Email']))

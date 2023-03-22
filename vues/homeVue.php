@@ -27,9 +27,23 @@ ob_start();
         </ul>
     </div>
 </div>
+<?php if (!isset($_COOKIE['theme'])) {
+    header('Location:/');
+}
+if ($_COOKIE['theme'] == "stPat") { ?>
+    <div class="col-md-3 text-left">
+        <a href="?toNormal"><img src="./images/trefle.webp" alt=""
+                class="img-fluid d-none d-md-block rounded mb-2 shadow "></a>
+        <p>Cliquez pour changer le thème!</p>
+    </div>
+<?php } else { ?>
+    <div class="col-md-3 text-left">
+        <a href="?toStPat"><img src="./images/normal.jpg" alt=""
+                class="img-fluid d-none d-md-block rounded mb-2 shadow "></a>
+        <p>Cliquez pour changer le thème!</p>
+    </div>
 
-
-<?php
+<?php }
 
 $content = ob_get_clean();
 require("_layout.php");

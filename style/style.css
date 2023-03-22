@@ -1,7 +1,22 @@
-body{background: linear-gradient(to right, #c04848, #480048);min-height: 100vh}.text-gray{color: #aaa}img{height: 170px;width: 140px}
+
+
+body{
+  min-height: 100vh
+}
+.text-gray{
+
+  color: #aaa
+
+}
+img{
+
+  height: 170px;
+  width: 140px
+
+}
 
 .center-card{
-    margin: auto;
+  margin: auto;
   width: 50%;
   padding: 10px;
 }

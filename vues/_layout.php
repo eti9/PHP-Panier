@@ -12,9 +12,17 @@
 
 
 <head>
+
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="style/style.css" />
+  <?php
+  if ($_COOKIE['theme'] == "stPat") { ?>
+    <link rel="stylesheet" href="style/st-path.css" />
+  <?php } else { ?>
+    <link rel="stylesheet" href="style/normal.css" />
+  <?php } ?>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -29,6 +37,7 @@
 </head>
 
 <body class="d-flex m-5">
+
   <div class="container bg-light card mx-auto">
     <nav class="navbar navbar-dark navbar-expand-lg my-2 bg-dark">
       <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span
@@ -78,7 +87,6 @@
 
     <?= $content ?>
 
-
     <footer class="p-2 m-2">
       <p>Copyright &copy; 2023 - Créer par Étienne Robert a l'aide de Bootstrap et JQUERY - Version 1.0</p>
     </footer>
@@ -87,8 +95,12 @@
 </body>
 <script>
 
+
+
   $('document').ready(function () {
     <?php if (isset($_COOKIE['success'])) {
+
+
       if ($_COOKIE['success'] != '')
         echo 'setTimeout(() => {alert("' . $_COOKIE['success'] . '");}, 100);';
     }
@@ -96,10 +108,6 @@
       if ($_COOKIE['erreurSQL'] != '')
         echo 'setTimeout(() => {alert("' . $_COOKIE['erreurSQL'] . '");},1000);';
     } ?>
-    $('document').ready(function () {
-      $('#btnModif').addClass('hidden');
-    });
-
   });
 
 </script>
