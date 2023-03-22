@@ -1,6 +1,6 @@
 # PHP-Panier
 
-## Projet réalisé par Étienne Robert
+Projet réalisé par Étienne Robert
 
 ## Objectif
 L'**Objectif** de ce projet était de créer un site web avec une liste de produit et un panier.
