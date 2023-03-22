@@ -50,3 +50,13 @@ function logoutAction()
     header("Location:/");
     die();
 }
+
+//REGISTER
+function afficherFormRegister()
+{
+    if (isset($_SESSION['Username'])) {
+        header('Location:/');
+        die();
+    }
+    require("vues/formRegisterVue.php");
+}

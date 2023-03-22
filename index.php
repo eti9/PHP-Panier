@@ -31,6 +31,8 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
     }
 } else if (isset($_POST['confirmedLogout'])) {
     logoutAction();
+} else if (isset($_GET['register'])) {
+    afficherFormRegister();
 } else if (isset($_GET['login'])) {
     afficherFormLoggin();
 } else if (isset($_GET['logout'])) {

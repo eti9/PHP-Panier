@@ -9,7 +9,10 @@ class FactureModel extends BDContext
         $factureID = $bdd->query('SELECT COUNT(FactureID) as count FROM facture group by FactureID')->rowCount() + 1;
         $panierModel = new PanierModel();
 
+        //Get an array of all the product from the user connected
         $allProductFromCart = $panierModel->getAllProductPanier()->fetchAll();
+
+        //Then transfer it into facture
         foreach ($allProductFromCart as $panier) {
             $req = $bdd->prepare('INSERT INTO facture (FactureID, ProduitID, Username, NbItem, DateAchat) VALUES (:factureID, :produitID, :username, :nbItem, now())');
             $req->execute(
@@ -21,6 +24,8 @@ class FactureModel extends BDContext
                 )
             );
         }
+
+        //Then delete them from facture
         $req = $bdd->prepare('DELETE FROM panier WHERE Username=:username ');
         $req->execute(array('username' => $_SESSION['Username']));
     }

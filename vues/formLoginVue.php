@@ -9,22 +9,22 @@
     <div class="card m-5 center-card" style="width: 50%">
         <div class="d-flex justify-content-center">
             <span class="text-danger">
-                <?php if (isset($_COOKIE['erreurLogin']))
-                    echo $_COOKIE['erreurLogin']; ?>
+                <?php if (isset($_COOKIE['erreurCreate']))
+                    echo $_COOKIE['erreurCreate']; ?>
             </span>
         </div>
-        <form class="form m-2" action="" method="post">
+        <form class="form m-2 needs-validation" action="" method="post">
             <!-- Username input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="username">Nom d'utilisateur</label>
-                <input type="text" id="username" name="Username" class="form-control" />
+                <input type="text" id="username" name="Username" class="form-control" required />
 
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="password">Mot de passe</label>
-                <input type="password" id="password" name="Password" class="form-control" />
+                <input type="password" id="password" name="Password" class="form-control" required />
 
             </div>
 
