@@ -16,7 +16,16 @@ Il est possible de:
   - Se deconnecter
   - Changer de thème
   - Créer une facture dans la table facture
+## Setup
+Pour pouvoir utilisé l'application, il vous faudrait un serveur de type Wamp Xampp ou Lamp. 
+J'ai développer sur Wamp, donc il faudras mettre le dossier dans le dossier /www du dossier wamp.
+Par exemple, pour moi cela ce trouve ici: C:\wamp64\www
 
+Par la suite, il faudrait créer la base de donnée php-panier dans MySQL et executé le script SQL fournit avec le projet.
+(voir [Fichier SQL de la base de donnée](https://github.com/eti9/PHP-Panier/blob/main/BD-SQL-SCRIPT/php-panier.sql))
+
+Pour finir, pour accéder au site, il faudrait accéder a localhost et ce rendre dans le 
+directory du projet où PHP choisira directement l'index.php comme fichier d'ouverture
 ## Thème CSS choisit
 ### 1er theme - Normal
 J'ai choisit un thème un peu style "Apple" auquel j'ai aussi rajouter un monstre rouge afin de donnée de la personnalité au site.
